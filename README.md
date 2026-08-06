@@ -1,4 +1,4 @@
-# 🌐 Cybernetic Developer Portfolio | Gurudatta G Bhat
+# 🌐 Developer Portfolio | Gurudatta G Bhat
 
 An interactive, high-performance web application portfolio engineered with modern web technologies, dynamic glassmorphism visuals, an interactive CLI terminal engine, web audio synth interactions, and a mobile-optimized responsive design.
 
