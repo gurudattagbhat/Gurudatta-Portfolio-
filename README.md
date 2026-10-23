@@ -1,4 +1,4 @@
-# 🌐 Developer Portfolio | Gurudatta G Bhat
+# 🌐 Cybernetic Developer Portfolio | Gurudatta G Bhat
 
 An interactive, high-performance web application portfolio engineered with modern web technologies, dynamic glassmorphism visuals, an interactive CLI terminal engine, web audio synth interactions, and a mobile-optimized responsive design.
 
@@ -13,7 +13,8 @@ An interactive, high-performance web application portfolio engineered with moder
 * **⚡ Cybernetic Particle Matrix**: Canvas-based interactive background with real-time particle connection physics and cursor attraction.
 * **🎵 Web Audio Synthesizer**: Custom UI sound feedback synthesizer powered by the Web Audio API with a toggleable mute control.
 * **🖥️ Interactive Terminal CLI**: Functional developer shell supporting custom commands (`bio`, `skills`, `projects`, `certs`, `contact`, `matrix`, `clear`) and quick-action presets.
-* **📜 Verified Credentials Showcase**: Dynamic grid displaying industry certifications (1M1B Green Internship, EF SET C2 Proficient, Meta, IBM, DeepLearning.AI, Packt, EDUCBA) paired with an embedded PDF modal previewer.
+* **📜 Verified Credentials Showcase**: Dynamic grid displaying 17 industry certifications (1M1B Green Internship, EF SET C2 Proficient, IBM, Meta, UIUC, DeepLearning.AI, Packt, Board Infinity, EDUCBA, UPenn) paired with an embedded PDF modal previewer.
+* **📄 Interactive Resume Deck**: Embedded high-performance PDF viewer with instant download (`Gurudatta_CV.pdf`), full-screen expand toggle, and direct browser viewer links.
 * **📂 Projects Showcase**: Filterable portfolio grid featuring key full-stack, AI/ML, and web software applications with live demo and GitHub repository links.
 * **📱 Ultra-Responsive Mobile Design**: Touch-optimized slide-in drawer navigation, backdrop overlay blur, dynamic typography scaling, and tap target compliance.
 
@@ -37,6 +38,8 @@ portfolio/
 │   │   ├── 1m1b_certificate_guru.pdf
 │   │   ├── EF SET Certificate.pdf
 │   │   └── Coursera *.pdf
+│   ├── resumes/                  # Verified Curriculum Vitae
+│   │   └── Gurudatta_CV.pdf
 │   └── IMG_20260425_114635117~2.jpg # Profile portrait image
 ├── index.html                    # Semantic HTML layout & structural components
 ├── styles.css                    # Design system, glassmorphism tokens, and media queries

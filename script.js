@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Play subtle sound on main buttons hover/click
-  document.querySelectorAll('.btn-primary, .btn-secondary, .social-btn, .filter-btn, .nav-link').forEach(btn => {
+  document.querySelectorAll('.btn-primary, .btn-secondary, .social-btn, .filter-btn, .nav-link, .avatar-contact-badge').forEach(btn => {
     btn.addEventListener('click', () => synth.playClick());
   });
 
@@ -104,25 +104,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-    });
+    }, { passive: true });
 
     const mouse = { x: null, y: null, radius: 150 };
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.x;
       mouse.y = e.y;
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
     });
 
     const particles = [];
-    const particleCount = Math.min(Math.floor(width / 18), 85);
+    const particleCount = Math.min(Math.floor(width / 16), 105);
 
     class Particle {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 1.2;
-        this.vy = (Math.random() - 0.5) * 1.2;
-        this.radius = Math.random() * 2 + 1;
-        this.color = Math.random() > 0.5 ? '#00ff9d' : '#a855f7';
+        this.vx = (Math.random() - 0.5) * 0.55;
+        this.vy = (Math.random() - 0.5) * 0.55;
+        this.radius = Math.random() * 1.8 + 1;
+        this.color = Math.random() > 0.45 ? '#00ff9d' : '#a855f7';
       }
 
       update() {
@@ -132,15 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (this.x < 0 || this.x > width) this.vx *= -1;
         if (this.y < 0 || this.y > height) this.vy *= -1;
 
-        // Mouse attraction
-        if (mouse.x && mouse.y) {
+        // Gentle mouse attraction & interaction
+        if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius) {
             const force = (mouse.radius - dist) / mouse.radius;
-            this.x -= (dx / dist) * force * 3;
-            this.y -= (dy / dist) * force * 3;
+            this.x -= (dx / dist) * force * 1.5;
+            this.y -= (dy / dist) * force * 1.5;
           }
         }
       }
@@ -149,8 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
         ctx.fill();
       }
     }
@@ -162,12 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateCanvas() {
       ctx.clearRect(0, 0, width, height);
 
-      // Connect particles
-      for (let a = 0; a < particles.length; a++) {
-        particles[a].update();
-        particles[a].draw();
+      const pLen = particles.length;
 
-        for (let b = a + 1; b < particles.length; b++) {
+      // 1. Draw connecting lines between nearby particles
+      for (let a = 0; a < pLen; a++) {
+        particles[a].update();
+
+        for (let b = a + 1; b < pLen; b++) {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -176,16 +180,21 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.strokeStyle = `rgba(0, 255, 157, ${1 - dist / 130})`;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = `rgba(0, 255, 157, ${(1 - dist / 130) * 0.7})`;
+            ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
       }
 
+      // 2. Draw all particle dots on top
+      for (let i = 0; i < pLen; i++) {
+        particles[i].draw();
+      }
+
       requestAnimationFrame(animateCanvas);
     }
-    animateCanvas();
+    requestAnimationFrame(animateCanvas);
   }
 
   /* ------------------------------------------------------------------------
@@ -242,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     help: `
       <div style="color: var(--neon-emerald);">Available System Commands:</div>
       <div>- <span style="color:var(--neon-cyan);">bio</span>      : View professional background & summary</div>
+      <div>- <span style="color:var(--neon-cyan);">resume</span>   : View and download official CV</div>
       <div>- <span style="color:var(--neon-cyan);">skills</span>   : Output full technical skills breakdown</div>
       <div>- <span style="color:var(--neon-cyan);">projects</span> : Display showcase software projects</div>
       <div>- <span style="color:var(--neon-cyan);">certs</span>    : List verified Meta, IBM & Packt certifications</div>
@@ -255,6 +265,16 @@ document.addEventListener('DOMContentLoaded', () => {
       <div>Focus Areas: AI/ML, Cybersecurity, Cloud Technologies & Modern Web Dev</div>
       <div>Building intelligent, scalable, and user-focused web applications with clean code.</div>
     `,
+    resume: `
+      <div style="color: var(--neon-emerald);">=== RESUME / CURRICULUM VITAE ===</div>
+      <div>Candidate: <strong>Gurudatta Ganapati Bhat</strong> (MCA Scholar)</div>
+      <div>Focus: Full-Stack Web Development | AI/ML | Software Engineering</div>
+      <div>File: <code>Gurudatta_CV.pdf</code> (1.7 MB Verified Document)</div>
+      <div style="margin-top: 0.5rem;">Actions:</div>
+      <div>• <a href="assets/resumes/Gurudatta_CV.pdf" download="Gurudatta_Bhat_Resume.pdf" style="color: var(--neon-cyan); text-decoration: underline;">Download Gurudatta_CV.pdf</a></div>
+      <div>• <a href="assets/resumes/Gurudatta_CV.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--neon-emerald); text-decoration: underline;">Open PDF in New Window</a></div>
+      <div>• Direct Anchor: <a href="#resume" style="color: #fff; text-decoration: underline;">Jump to #resume Section</a></div>
+    `,
     skills: `
       <div style="color: var(--neon-purple);">=== TECHNICAL SKILLS ===</div>
       <div>• Programming: Python, Java, C</div>
@@ -263,25 +283,35 @@ document.addEventListener('DOMContentLoaded', () => {
       <div>• Tools: VS Code, GitHub, Jupyter, Streamlit, Antigravity, Cursor, Netbeans</div>
     `,
     projects: `
-      <div style="color: var(--neon-emerald);">=== FEATURED ENGINEERING PROJECTS (6) ===</div>
-      <div>1. <strong>Local Handz</strong> - Home Services Platform (React, Node, MongoDB)</div>
+      <div style="color: var(--neon-emerald);">=== FEATURED ENGINEERING PROJECTS (8) ===</div>
+      <div>1. <strong>Local Handz</strong> - Home Services Platform (PHP, MySQL, JavaScript)</div>
       <div>2. <strong>Community Recycling Marketplace</strong> - Flask + SQLite Green Initiative</div>
       <div>3. <strong>CollabSpace</strong> - Real-Time Workspace (Spring Boot, WebSocket, MySQL)</div>
       <div>4. <strong>BeFit</strong> - AI Nutrition & Wellness Tracker (Python, Streamlit)</div>
       <div>5. <strong>ToolsEZ</strong> - All-in-One Utility Web Tools (JS, HTML5, CSS3)</div>
       <div>6. <strong>PathFinder</strong> - AI Resume Analyzer & Job Matcher (Python, AI/NLP)</div>
+      <div>7. <strong>Study Mate AI</strong> - Intelligent AI Academic Companion (Node.js, Groq AI, Express)</div>
+      <div>8. <strong>CareerPilot PRO</strong> - Multi-Platform Job Aggregator & AI ATS Doctor (MERN, Groq AI)</div>
     `,
     certs: `
-      <div style="color: var(--neon-cyan);">=== VERIFIED CERTIFICATIONS & CREDENTIALS (9) ===</div>
-      <div>1. [EF SET] EF SET English Certificate (C2 Proficient - 84/100)</div>
-      <div>2. [DeepLearning.AI] Applied Statistics for Data Analytics</div>
-      <div>3. [Packt] Advanced Data Structures and Algorithms</div>
-      <div>4. [Meta] Introduction to Databases</div>
-      <div>5. [IBM] Java Programming for Beginners</div>
-      <div>6. [EDUCBA] Machine Learning with Python & Statistics</div>
-      <div>7. [Meta] Introduction to Front-End Development</div>
-      <div>8. [UPenn] Data Analysis Using Python</div>
-      <div>9. [IBM] Data Analysis with Python</div>
+      <div style="color: var(--neon-cyan);">=== VERIFIED CERTIFICATIONS & CREDENTIALS (17) ===</div>
+      <div>1. [1M1B & AICTE] 1M1B Green Internship Certificate</div>
+      <div>2. [EF SET] EF SET English Certificate (C2 Proficient - 84/100)</div>
+      <div>3. [UIUC] Pattern Discovery in Data Mining</div>
+      <div>4. [UIUC] Data Visualization</div>
+      <div>5. [UIUC] Text Retrieval and Search Engines</div>
+      <div>6. [IBM] Computer Networks and Network Security</div>
+      <div>7. [Board Infinity] Quality Improvement and Management</div>
+      <div>8. [IBM] Introduction to Artificial Intelligence (AI)</div>
+      <div>9. [IBM] Introduction to Software Engineering</div>
+      <div>10. [DeepLearning.AI] Applied Statistics for Data Analytics</div>
+      <div>11. [Packt] Advanced Data Structures and Algorithms</div>
+      <div>12. [Meta] Introduction to Databases</div>
+      <div>13. [IBM] Java Programming for Beginners</div>
+      <div>14. [EDUCBA] Machine Learning with Python & Statistics</div>
+      <div>15. [Meta] Introduction to Front-End Development</div>
+      <div>16. [UPenn] Data Analysis Using Python</div>
+      <div>17. [IBM] Data Analysis with Python</div>
     `,
     contact: `
       <div style="color: var(--neon-emerald);">=== CONTACT CHANNELS ===</div>
@@ -387,6 +417,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ------------------------------------------------------------------------
+   * 5b. PROJECT CARDS SPOTLIGHT & AUDIO ENGINE (NO TILT / NO SCAN)
+   * ------------------------------------------------------------------------ */
+  const initProjectMotionGraphics = () => {
+    if (!projectCards.length) return;
+
+    let soundThrottle = 0;
+
+    projectCards.forEach(card => {
+      let bounds = null;
+
+      const onMouseEnter = () => {
+        bounds = card.getBoundingClientRect();
+
+        // Play subtle cyber interaction chirp
+        const now = Date.now();
+        if (now - soundThrottle > 280) {
+          soundThrottle = now;
+          if (typeof synth !== 'undefined' && synth && synth.enabled && synth.playBeep) {
+            synth.playBeep(1800, 0.02);
+          }
+        }
+      };
+
+      const onMouseMove = (e) => {
+        if (!bounds) bounds = card.getBoundingClientRect();
+        const mouseX = e.clientX - bounds.left;
+        const mouseY = e.clientY - bounds.top;
+
+        // Update CSS variables for smooth radial cursor spotlight
+        card.style.setProperty('--mouse-x', `${mouseX}px`);
+        card.style.setProperty('--mouse-y', `${mouseY}px`);
+      };
+
+      const onMouseLeave = () => {
+        bounds = null;
+      };
+
+      card.addEventListener('mouseenter', onMouseEnter);
+      card.addEventListener('mousemove', onMouseMove);
+      card.addEventListener('mouseleave', onMouseLeave);
+    });
+  };
+
+  initProjectMotionGraphics();
 
   /* ------------------------------------------------------------------------
    * 6. SKILL BADGES ANIMATION OBSERVER
@@ -524,32 +600,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Scroll Spy Observer to dynamically update green highlighter underline on scroll
-  function updateScrollSpy() {
-    let currentId = '';
-    const scrollPosition = window.pageYOffset + 220;
+  // High-performance Scroll Spy using native IntersectionObserver (zero layout thrashing)
+  const navObserverOptions = {
+    root: null,
+    rootMargin: '-20% 0px -65% 0px',
+    threshold: 0
+  };
 
-    spySections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < top + height) {
-        currentId = sec.getAttribute('id');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const currentId = entry.target.getAttribute('id');
+        if (currentId) {
+          allNavLinks.forEach(l => {
+            if (l.getAttribute('href') === `#${currentId}`) {
+              l.classList.add('active');
+            } else {
+              l.classList.remove('active');
+            }
+          });
+        }
       }
     });
+  }, navObserverOptions);
 
-    if (currentId) {
-      allNavLinks.forEach(l => {
-        if (l.getAttribute('href') === `#${currentId}`) {
-          l.classList.add('active');
-        } else {
-          l.classList.remove('active');
-        }
-      });
-    }
-  }
-
-  window.addEventListener('scroll', updateScrollSpy);
-  updateScrollSpy();
+  spySections.forEach(sec => navObserver.observe(sec));
 
   /* ------------------------------------------------------------------------
    * 10. CERTIFICATE MODAL PREVIEW HANDLER
@@ -642,6 +717,180 @@ document.addEventListener('DOMContentLoaded', () => {
         closeCertModal();
       }
     });
+  }
+
+  /* ------------------------------------------------------------------------
+   * 11. DEDICATED RESUME PREVIEW MODAL CONTROLLER
+   * ------------------------------------------------------------------------ */
+  const resumeModal = document.getElementById('resume-modal');
+  const resumeModalClose = document.getElementById('resume-modal-close');
+  const resumeModalIframe = document.getElementById('resume-modal-iframe');
+  const resumeOpenModalBtn = document.getElementById('resume-open-modal-btn');
+  const heroResumeBtn = document.getElementById('hero-resume-btn');
+  const resumeDownloadBtn = document.getElementById('resume-download-btn');
+  const resumeOpenBtn = document.getElementById('resume-open-btn');
+  const resumePdfPath = 'assets/resumes/Gurudatta_CV.pdf';
+
+  function openResumeModal() {
+    if (typeof synth !== 'undefined' && synth && synth.playBeep) {
+      synth.playBeep(1200, 0.08);
+    }
+    if (resumeModalIframe) {
+      resumeModalIframe.src = `${resumePdfPath}#view=FitH&toolbar=1`;
+    }
+    if (resumeModal) {
+      resumeModal.classList.add('active');
+      resumeModal.setAttribute('aria-hidden', 'false');
+    }
+    document.body.style.overflow = 'hidden';
+    showToast('Loading Gurudatta_CV.pdf Preview...');
+  }
+
+  function closeResumeModal() {
+    if (typeof synth !== 'undefined' && synth && synth.playBeep) {
+      synth.playBeep(800, 0.05);
+    }
+    if (resumeModal) {
+      resumeModal.classList.remove('active');
+      resumeModal.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+    if (resumeModalIframe) {
+      resumeModalIframe.src = '';
+    }
+  }
+
+  if (resumeOpenModalBtn) {
+    resumeOpenModalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openResumeModal();
+    });
+  }
+
+  if (heroResumeBtn) {
+    heroResumeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openResumeModal();
+    });
+  }
+
+  if (resumeModalClose) {
+    resumeModalClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeResumeModal();
+    });
+  }
+
+  if (resumeModal) {
+    resumeModal.addEventListener('click', (e) => {
+      if (e.target === resumeModal) {
+        closeResumeModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && resumeModal && resumeModal.classList.contains('active')) {
+      closeResumeModal();
+    }
+  });
+
+  if (resumeDownloadBtn) {
+    resumeDownloadBtn.addEventListener('click', () => {
+      if (typeof synth !== 'undefined' && synth && synth.playBeep) {
+        synth.playBeep(1500, 0.1);
+      }
+      showToast('Downloading Gurudatta_CV.pdf...');
+    });
+  }
+
+  if (resumeOpenBtn) {
+    resumeOpenBtn.addEventListener('click', () => {
+      if (typeof synth !== 'undefined' && synth && synth.playBeep) {
+        synth.playBeep(1300, 0.08);
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+   * 12. ACADEMIC TIMELINE SCROLL-DRIVEN CONNECTING LINE ANIMATION
+   * ------------------------------------------------------------------------ */
+  const timelineContainer = document.getElementById('timeline-container');
+  const timelineProgressLine = document.getElementById('timeline-progress-line');
+  const timelineProgressHead = document.getElementById('timeline-progress-head');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+
+  if (timelineContainer && timelineProgressLine) {
+    let ticking = false;
+
+    function updateTimelineOnScroll() {
+      const containerRect = timelineContainer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Line begins extending downward as soon as top of timeline enters the middle-bottom portion of viewport
+      const triggerPoint = windowHeight * 0.65;
+      const containerTop = containerRect.top;
+      const containerHeight = containerRect.height;
+
+      // Distance from trigger point to container top
+      let currentProgress = triggerPoint - containerTop;
+      
+      // Clamp between 0 and full container height
+      currentProgress = Math.max(0, Math.min(currentProgress, containerHeight));
+
+      // Apply line height
+      timelineProgressLine.style.height = `${currentProgress}px`;
+
+      // Active photon head spark
+      if (timelineProgressHead) {
+        if (currentProgress > 10 && currentProgress < containerHeight) {
+          timelineProgressHead.classList.add('active');
+        } else {
+          timelineProgressHead.classList.remove('active');
+        }
+      }
+
+      // Check each dot / item connection
+      timelineItems.forEach(item => {
+        const node = item.querySelector('.timeline-node');
+        if (!node) return;
+
+        // Position of node center relative to container top
+        const nodeTop = item.offsetTop + node.offsetTop + (node.offsetHeight / 2);
+
+        // When the glowing line reaches or passes the node
+        if (currentProgress >= nodeTop - 6) {
+          if (!item.classList.contains('active')) {
+            item.classList.add('active');
+            node.classList.add('active');
+            try {
+              if (synth && synth.enabled && synth.playBeep) {
+                const idx = parseInt(item.getAttribute('data-timeline-idx') || '0', 10);
+                synth.playBeep(900 + (idx * 160), 0.05);
+              }
+            } catch (e) {}
+          }
+        } else {
+          item.classList.remove('active');
+          node.classList.remove('active');
+        }
+      });
+
+      ticking = false;
+    }
+
+    function onTimelineScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateTimelineOnScroll);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onTimelineScroll, { passive: true });
+    window.addEventListener('resize', onTimelineScroll, { passive: true });
+
+    // Initial check on load
+    updateTimelineOnScroll();
   }
 
 });

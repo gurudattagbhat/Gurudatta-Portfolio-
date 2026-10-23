@@ -24,22 +24,25 @@
   <nav class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#hero" class="nav-logo">
-        <span class="logo-badge">&lt;GB/&gt;</span> Gurudatta Bhat
+        <span class="logo-badge">&lt;GB/&gt;</span>
+        <span class="logo-name">Gurudatta Bhat</span>
       </a>
       
       <ul class="nav-links" id="nav-links">
         <li><a href="#hero" class="nav-link active">Home</a></li>
-        <li><a href="#terminal" class="nav-link">Terminal CLI</a></li>
+        <li><a href="#terminal" class="nav-link">Terminal</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#academics" class="nav-link">Academics</a></li>
         <li><a href="#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       
       <div class="nav-actions">
-        <div class="status-beacon">
-          <span class="beacon-dot"></span> Available for Hire
+        <div class="status-beacon" title="Currently open to software engineering & intern opportunities">
+          <span class="beacon-dot"></span>
+          <span class="status-beacon-text">Available for Hire</span>
         </div>
         <button class="sound-toggle-btn" id="sound-toggle" title="Toggle Interaction Sound FX">
           <i class="fa-solid fa-volume-high" id="sound-icon"></i>
@@ -72,23 +75,33 @@
           <a href="#projects" class="btn-primary">
             <i class="fa-solid fa-rocket"></i> Explore Showcase
           </a>
+          <button type="button" class="btn-secondary" id="hero-resume-btn">
+            <i class="fa-solid fa-file-pdf"></i> View Resume
+          </button>
           <a href="#terminal" class="btn-secondary">
-            <i class="fa-solid fa-terminal"></i> Open CLI Console
+            <i class="fa-solid fa-terminal"></i> CLI Console
           </a>
         </div>
       </div>
 
       <!-- Avatar & Graphic Elements -->
       <div class="hero-visual">
-        <div class="avatar-container">
+        <div class="avatar-container" tabindex="0">
           <div class="hologram-ring"></div>
           <img src="assets/IMG_20260425_114635117~2.jpg" alt="Gurudatta Ganapati Bhat Portrait" class="avatar-img">
           <div class="hud-chip chip-1">
-            <i class="fa-solid fa-code"></i> MCA 8.55 CGPA
+            <i class="fa-solid fa-code"></i> MCA 8.4 CGPA
           </div>
           <div class="hud-chip chip-2">
             <i class="fa-solid fa-bolt"></i> Full-Stack & AI/ML
           </div>
+
+          <!-- Gradual Dropdown Contact Action on Hover -->
+          <a href="#contact" class="avatar-contact-badge" id="avatar-contact-btn" aria-label="Connect with Gurudatta - Go to Contact Section">
+            <span class="avatar-contact-beacon"></span>
+            <span>Connect With Me</span>
+            <i class="fa-solid fa-arrow-down-long"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -129,6 +142,7 @@
           <span class="preset-label">Quick Commands:</span>
           <button class="preset-btn" data-cmd="help">help</button>
           <button class="preset-btn" data-cmd="bio">bio</button>
+          <button class="preset-btn" data-cmd="resume">resume</button>
           <button class="preset-btn" data-cmd="skills">skills</button>
           <button class="preset-btn" data-cmd="projects">projects</button>
           <button class="preset-btn" data-cmd="certs">certs</button>
@@ -150,62 +164,83 @@
 
       <div class="skills-grid">
         <!-- Programming Languages -->
-        <div class="glass-card skill-category-card">
+        <div class="glass-card skill-category-card" style="--card-accent: #a855f7; --card-accent-glow: rgba(168, 85, 247, 0.3);">
           <div class="skill-cat-header">
-            <i class="fa-solid fa-code skill-cat-icon"></i>
-            <h3 class="skill-cat-title">Programming Languages</h3>
+            <div class="skill-cat-icon-box">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div class="skill-cat-info">
+              <span class="skill-cat-sub">Core & Scripting</span>
+              <h3 class="skill-cat-title">Programming Languages</h3>
+            </div>
           </div>
           <div class="skill-tags-cloud">
-            <span class="skill-tag-pill"><i class="fa-brands fa-python" style="color: #3776ab;"></i> Python</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-java" style="color: #f89820;"></i> Java</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-c" style="color: #a8b9cc;"></i> C</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-php" style="color: #777bb4;"></i> PHP</span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-python" style="color: #3776ab;"></i><span>Python</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-java" style="color: #f89820;"></i><span>Java</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-c" style="color: #a8b9cc;"></i><span>C</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-php" style="color: #777bb4;"></i><span>PHP</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-js" style="color: #f7df1e;"></i><span>JavaScript</span></span>
           </div>
         </div>
 
         <!-- Web & Frameworks -->
-        <div class="glass-card skill-category-card">
+        <div class="glass-card skill-category-card" style="--card-accent: #00f0ff; --card-accent-glow: rgba(0, 240, 255, 0.3);">
           <div class="skill-cat-header">
-            <i class="fa-solid fa-globe skill-cat-icon"></i>
-            <h3 class="skill-cat-title">Web & Frameworks</h3>
+            <div class="skill-cat-icon-box">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="skill-cat-info">
+              <span class="skill-cat-sub">Frontend & Backend</span>
+              <h3 class="skill-cat-title">Web & Frameworks</h3>
+            </div>
           </div>
           <div class="skill-tags-cloud">
-            <span class="skill-tag-pill"><i class="fa-brands fa-html5" style="color: #e34f26;"></i> HTML5</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-css3-alt" style="color: #1572b6;"></i> CSS3</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-react" style="color: #61dafb;"></i> React</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-node-js" style="color: #339933;"></i> Node.js</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-server" style="color: #00ff9d;"></i> Express.js</span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-react" style="color: #61dafb;"></i><span>React</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-node-js" style="color: #68a063;"></i><span>Node.js</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-server" style="color: #00ff9d;"></i><span>Express.js</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-leaf" style="color: #6db33f;"></i><span>Spring Boot</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-html5" style="color: #e34f26;"></i><span>HTML5</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-css3-alt" style="color: #1572b6;"></i><span>CSS3</span></span>
           </div>
         </div>
 
         <!-- Database Management -->
-        <div class="glass-card skill-category-card">
+        <div class="glass-card skill-category-card" style="--card-accent: #00ff9d; --card-accent-glow: rgba(0, 255, 157, 0.3);">
           <div class="skill-cat-header">
-            <i class="fa-solid fa-database skill-cat-icon"></i>
-            <h3 class="skill-cat-title">Databases & Querying</h3>
+            <div class="skill-cat-icon-box">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <div class="skill-cat-info">
+              <span class="skill-cat-sub">Relational & NoSQL</span>
+              <h3 class="skill-cat-title">Databases & Storage</h3>
+            </div>
           </div>
           <div class="skill-tags-cloud">
-            <span class="skill-tag-pill"><i class="fa-solid fa-database" style="color: #00758f;"></i> SQL</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-database" style="color: #f29111;"></i> MySQL</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-leaf" style="color: #47a248;"></i> MongoDB</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-cubes" style="color: #003b57;"></i> SQLite</span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-database" style="color: #00758f;"></i><span>MySQL</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-leaf" style="color: #47a248;"></i><span>MongoDB</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-cubes" style="color: #00a4e4;"></i><span>SQLite</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-table" style="color: #336791;"></i><span>PostgreSQL</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-server" style="color: #00ff9d;"></i><span>SQL Query</span></span>
           </div>
         </div>
 
         <!-- Environments & Tools -->
-        <div class="glass-card skill-category-card">
+        <div class="glass-card skill-category-card" style="--card-accent: #ffbd2e; --card-accent-glow: rgba(255, 189, 46, 0.3);">
           <div class="skill-cat-header">
-            <i class="fa-solid fa-terminal skill-cat-icon"></i>
-            <h3 class="skill-cat-title">Environments & Tools</h3>
+            <div class="skill-cat-icon-box">
+              <i class="fa-solid fa-terminal"></i>
+            </div>
+            <div class="skill-cat-info">
+              <span class="skill-cat-sub">DevOps & AI Tooling</span>
+              <h3 class="skill-cat-title">Environments & Tools</h3>
+            </div>
           </div>
           <div class="skill-tags-cloud">
-            <span class="skill-tag-pill"><i class="fa-brands fa-linux" style="color: #fcc624;"></i> Linux</span>
-            <span class="skill-tag-pill"><i class="fa-brands fa-github" style="color: #ffffff;"></i> GitHub</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-code" style="color: #007acc;"></i> VS Code</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-book" style="color: #f37626;"></i> Jupyter</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-chart-line" style="color: #ff4b4b;"></i> Streamlit</span>
-            <span class="skill-tag-pill"><i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Cursor</span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-linux" style="color: #fcc624;"></i><span>Linux</span></span>
+            <span class="skill-tag-pill"><i class="fa-brands fa-github" style="color: #ffffff;"></i><span>Git & GitHub</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-code" style="color: #007acc;"></i><span>VS Code</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-chart-line" style="color: #ff4b4b;"></i><span>Streamlit</span></span>
+            <span class="skill-tag-pill"><i class="fa-solid fa-book" style="color: #f37626;"></i><span>Jupyter</span></span>
           </div>
         </div>
       </div>
@@ -355,6 +390,50 @@
             </div>
           </div>
         </div>
+
+        <!-- Project 7: Study Mate AI -->
+        <div class="glass-card project-card" data-category="web python" data-url="https://study-mate-ai-wlgk.onrender.com/">
+          <div class="project-card-header">
+            <span class="project-category-badge">AI Academic Platform</span>
+            <div class="project-links">
+              <a href="https://study-mate-ai-wlgk.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Live Site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/gurudattagbhat/Study-Mate-AI" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-title">Study Mate AI | Intelligent Academic Companion</h3>
+            <p class="project-desc">Full-stack AI-driven learning and exam preparation platform powered by Groq LLaMA 3.3. Features concept tutoring, PDF note analysis, OCR handwriting scanner, simulated oral viva exams, 3D flashcards, and smart study analytics.</p>
+            <div class="project-tech-stack">
+              <span class="tech-chip">Node.js</span>
+              <span class="tech-chip">Express</span>
+              <span class="tech-chip">Groq AI</span>
+              <span class="tech-chip">MongoDB</span>
+              <span class="tech-chip">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8: CareerPilot PRO -->
+        <div class="glass-card project-card" data-category="web python" data-url="https://career-pilot-smov.onrender.com/">
+          <div class="project-card-header">
+            <span class="project-category-badge">MERN & AI Platform</span>
+            <div class="project-links">
+              <a href="https://career-pilot-smov.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Live Site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/gurudattagbhat/Career-Pilot" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-title">CareerPilot PRO | Job Aggregator & AI ATS Doctor</h3>
+            <p class="project-desc">Full-stack MERN platform aggregating live tech jobs with direct apply links. Features neural resume extraction, Groq LLaMA-3.3 AI Copilot, and an interactive ATS Resume Doctor providing 4-pillar diagnostics and bullet optimization.</p>
+            <div class="project-tech-stack">
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">Node.js</span>
+              <span class="tech-chip">Express</span>
+              <span class="tech-chip">Groq AI</span>
+              <span class="tech-chip">MongoDB</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -367,20 +446,25 @@
         <h2 class="section-title">Education & Achievements</h2>
       </div>
 
-      <div class="timeline-container">
+      <div class="timeline-container" id="timeline-container">
+        <!-- Glowing Animated Progress Line that connects education nodes on scroll -->
+        <div class="timeline-progress-line" id="timeline-progress-line">
+          <div class="timeline-progress-head" id="timeline-progress-head"></div>
+        </div>
+
         <!-- MCA -->
-        <div class="timeline-item">
+        <div class="timeline-item" data-timeline-idx="0">
           <div class="timeline-node"></div>
           <div class="glass-card timeline-content">
             <div class="timeline-date">Present (2024 - 2026)</div>
             <h3 class="timeline-degree">Master of Computer Applications (MCA)</h3>
             <div class="timeline-institution">Alliance University, Bangalore, Karnataka</div>
-            <span class="timeline-score"><i class="fa-solid fa-star text-gradient-neon"></i> Overall CGPA: 8.55 (Sem 1: 8.9 | Sem 2: 8.2)</span>
+            <span class="timeline-score"><i class="fa-solid fa-star text-gradient-neon"></i> Overall CGPA: 8.4 (Sem 1: 8.9 | Sem 2: 8.2 | Sem 3: 8.1)</span>
           </div>
         </div>
 
         <!-- BCA -->
-        <div class="timeline-item">
+        <div class="timeline-item" data-timeline-idx="1">
           <div class="timeline-node"></div>
           <div class="glass-card timeline-content">
             <div class="timeline-date">2022 - 2025</div>
@@ -391,7 +475,7 @@
         </div>
 
         <!-- HSC -->
-        <div class="timeline-item">
+        <div class="timeline-item" data-timeline-idx="2">
           <div class="timeline-node"></div>
           <div class="glass-card timeline-content">
             <div class="timeline-date">2022</div>
@@ -459,7 +543,168 @@
           </div>
         </div>
 
-        <!-- Card 2: DeepLearning.AI -->
+        <!-- Card 3: UIUC Pattern Discovery in Data Mining -->
+        <div class="glass-card cert-card"
+             data-title="Pattern Discovery in Data Mining"
+             data-issuer="University of Illinois Urbana-Champaign"
+             data-icon="fa-solid fa-cubes"
+             data-icon-color="#ff5f00"
+             data-date="Aug 11, 2026"
+             data-pdf="assets/certificates/Coursera VQYN4EBN9GFS (1).pdf"
+             data-verify="https://coursera.org/verify/VQYN4EBN9GFS">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-cubes" style="color: #ff5f00;"></i> UIUC
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Pattern Discovery in Data Mining</h3>
+          <p class="cert-description">Frequent itemset mining, Apriori & FP-Growth algorithms, association rule mining, and sequential pattern analysis.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 4: UIUC Data Visualization -->
+        <div class="glass-card cert-card"
+             data-title="Data Visualization"
+             data-issuer="University of Illinois Urbana-Champaign"
+             data-icon="fa-solid fa-chart-column"
+             data-icon-color="#ff5f00"
+             data-date="Aug 10, 2026"
+             data-pdf="assets/certificates/Coursera BFUNOK40RAD8.pdf"
+             data-verify="https://coursera.org/verify/BFUNOK40RAD8">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-chart-column" style="color: #ff5f00;"></i> UIUC
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Data Visualization</h3>
+          <p class="cert-description">Visual perception principles, chart design strategies, exploratory data graphics, and interactive dashboard storytelling.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 5: UIUC Text Retrieval and Search Engines -->
+        <div class="glass-card cert-card"
+             data-title="Text Retrieval and Search Engines"
+             data-issuer="University of Illinois Urbana-Champaign"
+             data-icon="fa-solid fa-magnifying-glass"
+             data-icon-color="#ff5f00"
+             data-date="Aug 10, 2026"
+             data-pdf="assets/certificates/Coursera GIMEFL5JDO3R.pdf"
+             data-verify="https://coursera.org/verify/GIMEFL5JDO3R">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-magnifying-glass" style="color: #ff5f00;"></i> UIUC
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Text Retrieval and Search Engines</h3>
+          <p class="cert-description">Vector space retrieval models, inverted indexes, ranking algorithms (BM25, PageRank), and search engine architecture.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 6: IBM Computer Networks and Network Security -->
+        <div class="glass-card cert-card"
+             data-title="Computer Networks and Network Security"
+             data-issuer="IBM"
+             data-icon="fa-solid fa-network-wired"
+             data-icon-color="#054ada"
+             data-date="Aug 10, 2026"
+             data-pdf="assets/certificates/Coursera V5MR1Y93R7EX.pdf"
+             data-verify="https://coursera.org/verify/V5MR1Y93R7EX">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-network-wired" style="color: #054ada;"></i> IBM
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Computer Networks & Network Security</h3>
+          <p class="cert-description">Network architecture, OSI & TCP/IP protocols, routing algorithms, firewalls, security, and cryptography principles.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 7: Board Infinity Quality Improvement and Management -->
+        <div class="glass-card cert-card"
+             data-title="Quality Improvement and Management"
+             data-issuer="Board Infinity"
+             data-icon="fa-solid fa-sliders"
+             data-icon-color="#00d2ff"
+             data-date="Aug 6, 2026"
+             data-pdf="assets/certificates/Coursera F41RWXHN7979.pdf"
+             data-verify="https://coursera.org/verify/F41RWXHN7979">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-sliders" style="color: #00d2ff;"></i> Board Infinity
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Quality Improvement & Management</h3>
+          <p class="cert-description">Quality control methodologies, process optimization, Six Sigma principles, and operational excellence strategies.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 8: IBM Introduction to Artificial Intelligence (AI) -->
+        <div class="glass-card cert-card"
+             data-title="Introduction to Artificial Intelligence (AI)"
+             data-issuer="IBM"
+             data-icon="fa-solid fa-robot"
+             data-icon-color="#054ada"
+             data-date="Aug 5, 2026"
+             data-pdf="assets/certificates/Coursera 453IOBRGEWVC.pdf"
+             data-verify="https://coursera.org/verify/453IOBRGEWVC">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-robot" style="color: #054ada;"></i> IBM
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Introduction to Artificial Intelligence (AI)</h3>
+          <p class="cert-description">Fundamental concepts of AI, machine learning algorithms, deep learning, neural networks, and AI ethics.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 9: IBM Introduction to Software Engineering -->
+        <div class="glass-card cert-card"
+             data-title="Introduction to Software Engineering"
+             data-issuer="IBM"
+             data-icon="fa-solid fa-laptop-code"
+             data-icon-color="#054ada"
+             data-date="Aug 4, 2026"
+             data-pdf="assets/certificates/Coursera IWM8GOARF4RU.pdf"
+             data-verify="https://coursera.org/verify/IWM8GOARF4RU">
+          <div class="cert-card-header">
+            <div class="cert-issuer-badge">
+              <i class="fa-solid fa-laptop-code" style="color: #054ada;"></i> IBM
+            </div>
+            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          </div>
+          <h3 class="cert-title">Introduction to Software Engineering</h3>
+          <p class="cert-description">Software development lifecycle (SDLC), Agile development, software architecture patterns, and DevOps fundamentals.</p>
+          <div class="cert-card-footer">
+            <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
+            <span class="cert-date-text">Aug 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 10: DeepLearning.AI -->
         <div class="glass-card cert-card" 
              data-title="Applied Statistics for Data Analytics"
              data-issuer="DeepLearning.AI"
@@ -482,7 +727,7 @@
           </div>
         </div>
 
-        <!-- Card 2: Packt -->
+        <!-- Card 11: Packt -->
         <div class="glass-card cert-card"
              data-title="Advanced Data Structures and Algorithms"
              data-issuer="Packt"
@@ -505,7 +750,7 @@
           </div>
         </div>
 
-        <!-- Card 3: Meta Intro to Databases -->
+        <!-- Card 12: Meta Intro to Databases -->
         <div class="glass-card cert-card"
              data-title="Introduction to Databases"
              data-issuer="Meta"
@@ -528,7 +773,7 @@
           </div>
         </div>
 
-        <!-- Card 4: IBM Java Programming -->
+        <!-- Card 13: IBM Java Programming -->
         <div class="glass-card cert-card"
              data-title="Java Programming for Beginners"
              data-issuer="IBM"
@@ -551,7 +796,7 @@
           </div>
         </div>
 
-        <!-- Card 5: EDUCBA ML -->
+        <!-- Card 14: EDUCBA ML -->
         <div class="glass-card cert-card"
              data-title="Machine Learning with Python & Statistics"
              data-issuer="EDUCBA"
@@ -574,7 +819,7 @@
           </div>
         </div>
 
-        <!-- Card 6: Meta Front-End -->
+        <!-- Card 15: Meta Front-End -->
         <div class="glass-card cert-card"
              data-title="Introduction to Front-End Development"
              data-issuer="Meta"
@@ -597,7 +842,7 @@
           </div>
         </div>
 
-        <!-- Card 7: UPenn Data Analysis -->
+        <!-- Card 16: UPenn Data Analysis -->
         <div class="glass-card cert-card"
              data-title="Data Analysis Using Python"
              data-issuer="University of Pennsylvania"
@@ -620,7 +865,7 @@
           </div>
         </div>
 
-        <!-- Card 8: IBM Data Analysis -->
+        <!-- Card 17: IBM Data Analysis -->
         <div class="glass-card cert-card"
              data-title="Data Analysis with Python"
              data-issuer="IBM"
@@ -640,6 +885,104 @@
           <div class="cert-card-footer">
             <button type="button" class="btn-cert-view"><i class="fa-solid fa-file-pdf"></i> View Certificate</button>
             <span class="cert-date-text">Dec 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume View & Download Section -->
+  <section class="section" id="resume">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-file-invoice"></i> Verified Curriculum Vitae</span>
+        <h2 class="section-title">Resume & Professional Profile</h2>
+      </div>
+
+      <!-- Resume Interactive Command Deck -->
+      <div class="resume-deck-wrapper">
+        <!-- Interactive Resume Hub Card -->
+        <div class="glass-card resume-hub-card">
+          <div class="resume-hub-header">
+            <div class="resume-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="resume-hub-title">
+              <i class="fa-solid fa-terminal" style="color: var(--neon-cyan);"></i> gurudatta@cyber-deck:~/resumes/Gurudatta_CV.pdf
+            </div>
+            <div class="resume-status-pill">
+              <span class="status-pulse-dot"></span>
+              <span>Active & Verified</span>
+            </div>
+          </div>
+
+          <div class="resume-hub-body">
+            <div class="resume-doc-graphic">
+              <div class="doc-icon-glow">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <div class="doc-badge-chip">PDF • 1.7 MB</div>
+            </div>
+
+            <div class="resume-hub-details">
+              <div class="resume-candidate-badge">
+                <i class="fa-solid fa-graduation-cap" style="color: var(--neon-emerald);"></i> MCA Scholar • Alliance University, Bangalore
+              </div>
+              <h3 class="resume-doc-heading">Gurudatta Ganapati Bhat — Official CV</h3>
+              <p class="resume-doc-summary">
+                Comprehensive curriculum vitae featuring academic track (MCA 8.4 CGPA & BCA 87.98%), 8+ featured engineering applications, 17 verified industry certifications (1M1B, EF SET C2 84/100, IBM, Meta, UIUC), and core technical proficiencies in Full-Stack Web Development, AI/ML & Cloud.
+              </p>
+
+              <div class="resume-hub-actions">
+                <button type="button" class="btn-primary resume-launch-modal-btn" id="resume-open-modal-btn">
+                  <i class="fa-solid fa-eye"></i> View & Preview Resume
+                </button>
+                <a href="assets/resumes/Gurudatta_CV.pdf" download="Gurudatta_Bhat_Resume.pdf" class="btn-secondary" id="resume-download-btn">
+                  <i class="fa-solid fa-cloud-arrow-down"></i> Download PDF
+                </a>
+                <a href="assets/resumes/Gurudatta_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="resume-open-btn">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resume Highlights Snapshot Cards -->
+        <div class="resume-highlights-grid">
+          <div class="glass-card resume-highlight-box">
+            <div class="highlight-icon" style="color: var(--neon-emerald);">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="highlight-content">
+              <span class="highlight-label">ACADEMIC EXCELLENCE</span>
+              <h4 class="highlight-title">MCA (8.4 CGPA) & BCA (87.98%)</h4>
+              <p class="highlight-desc">Alliance University, Bangalore & JSS SMI with verified first-class distinction and core engineering foundations.</p>
+            </div>
+          </div>
+
+          <div class="glass-card resume-highlight-box">
+            <div class="highlight-icon" style="color: var(--neon-cyan);">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="highlight-content">
+              <span class="highlight-label">CORE TECHNICAL STACK</span>
+              <h4 class="highlight-title">Full-Stack & Intelligent Systems</h4>
+              <p class="highlight-desc">Python, Java, Spring Boot, React, Node.js, Express, MongoDB, MySQL, SQLite, and Web APIs.</p>
+            </div>
+          </div>
+
+          <div class="glass-card resume-highlight-box">
+            <div class="highlight-icon" style="color: var(--neon-purple);">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="highlight-content">
+              <span class="highlight-label">VERIFIED CREDENTIALS</span>
+              <h4 class="highlight-title">17 Industry Certifications</h4>
+              <p class="highlight-desc">1M1B Green Intern, EF SET C2 Proficient (84/100), IBM, Meta, UIUC, DeepLearning.AI & UPenn.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -765,6 +1108,35 @@
         </a>
         <a id="cert-modal-download" href="#" target="_blank" class="btn-primary">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Resume View Modal -->
+  <div class="cert-modal-overlay" id="resume-modal" aria-hidden="true">
+    <div class="cert-modal-container glass-card resume-modal-container">
+      <div class="cert-modal-header">
+        <div class="cert-modal-title-group">
+          <span class="cert-modal-badge" style="color: var(--neon-emerald);">
+            <i class="fa-solid fa-file-pdf"></i> Verified Curriculum Vitae (PDF)
+          </span>
+          <h3 class="cert-modal-heading">Gurudatta Ganapati Bhat — Official CV</h3>
+          <span class="cert-modal-date">Master of Computer Applications • Alliance University, Bangalore</span>
+        </div>
+        <button class="cert-modal-close" id="resume-modal-close" aria-label="Close resume viewer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cert-modal-body resume-modal-iframe-body">
+        <iframe id="resume-modal-iframe" src="" title="Gurudatta Ganapati Bhat Resume Preview"></iframe>
+      </div>
+      <div class="cert-modal-footer">
+        <a href="assets/resumes/Gurudatta_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full View
+        </a>
+        <a href="assets/resumes/Gurudatta_CV.pdf" download="Gurudatta_Bhat_Resume.pdf" class="btn-primary">
+          <i class="fa-solid fa-download"></i> Download PDF (1.7 MB)
         </a>
       </div>
     </div>
